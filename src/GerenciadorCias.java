@@ -13,7 +13,7 @@ public class GerenciadorCias {
         return instance;
     }
 
-    public void adiconar(CiaAerea cia){
+    public void adicionar(CiaAerea cia){
         empresas.add(cia);
     }
 
