@@ -11,7 +11,5 @@ public class CiaAerea {
         return codigo;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 }

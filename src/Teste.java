@@ -3,10 +3,12 @@ import java.time.Duration;
 
 public class Teste {
     public static void main(String[] args){
-        cadastrarTeste();
-        Geo geo1 = new Geo(-29.9939, -51.1711);
-        Geo geo2 = new Geo(-23.4356, -46.4731);
-        System.out.println(Geo.distancia(geo1, geo2));
+       cadastrarTeste();
+       GerenciadorRotas gr = GerenciadorRotas.getInstance();
+        LocalDateTime datahora1 = LocalDateTime.of(2020, 8, 10, 8, 0);
+        Duration d1 = Duration.ofMinutes(90);
+        VooVariasEscalas vve = new VooVariasEscalas(gr.listarTodos().get(0), gr.listarTodos(),datahora1, d1, Voo.Status.CONFIRMADO);
+        System.out.println(vve);
     }
 
     public static void cadastrarTeste(){
