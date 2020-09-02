@@ -29,11 +29,10 @@ public class Rota {
 
     @Override
     public String toString() {
-        return "Rota{" +
-                "cia=" + cia +
-                ", origem=" + origem +
-                ", destino=" + destino +
-                ", aeronave=" + aeronave +
+        return "Rota{" + cia +
+                "| De (" + origem +
+                ") Para (" + destino +
+                ")| " + aeronave +
                 '}';
     }
 }

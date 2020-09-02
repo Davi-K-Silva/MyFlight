@@ -20,6 +20,11 @@ public class Aeroporto {
     public Geo getLoc() {
         return loc;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s [%s]", nome, codigo);
+    }
 }
 
 

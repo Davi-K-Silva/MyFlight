@@ -12,4 +12,9 @@ public class CiaAerea {
     }
 
     public String getNome() { return nome; }
+
+    @Override
+    public String toString(){
+        return String.format("Cia[%s,%s]", codigo, nome);
+    }
 }

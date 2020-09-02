@@ -20,4 +20,9 @@ public class Aeronave {
     public int getCapacidade() {
         return capacidade;
     }
+
+    @Override
+    public String toString(){
+        return "Aeronave(" + codigo + "," + descricao + "," + capacidade + ")";
+    }
 }
