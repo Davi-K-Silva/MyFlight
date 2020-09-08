@@ -1,19 +1,46 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class VooEscalas extends Voo{
-    private Rota rotaFinal;
+    private ArrayList<Rota> rotas;
+    private Duration duracao;
 
-    public VooEscalas(LocalDateTime datahora, Duration duracao, Rota rota, Rota rotafinal, Status status){
-        super(datahora, duracao, rota, status);
-        this.rotaFinal = rotafinal;
+    public VooEscalas( LocalDateTime datahora) {
+        super(datahora);
+        this.rotas = new ArrayList<>();
+        this.duracao = Duration.ofMinutes(0);
     }
 
-    public Rota getRotaFinal() { return rotaFinal; }
+    public Duration getDuracao() {
+        return duracao;
+    }
+
+    public Rota getRota() {
+        return null;
+    }
+
+    public ArrayList<Rota> getRotas(){
+        return rotas;
+    }
+
+    public void adicionarRota(Rota rota) {
+        this.duracao = duracao.plusMinutes(calcDuracao(rota));
+        rotas.add(rota);
+    }
+
+    private int calcDuracao(Rota rota){
+        double distancia = Geo.distancia(rota.getOrigem().getLoc(), rota.getDestino().getLoc());
+        double tempo = (distancia / 805) * 60;
+        return (int)tempo + 30;
+    }
 
     @Override
     public String toString() {
-        return super.toString() + " -> " + rotaFinal;
+        String Escalas = rotas.get(0).toString();
+        for(int i = 1; i < rotas.size(); i++){
+            Escalas += " -> " + rotas.get(i);
+        }
+        return String.format("Voo: %s %s %s min", getDatahora(), Escalas, duracao.toMinutes());
     }
-
 }

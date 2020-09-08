@@ -1,14 +1,16 @@
 import java.time.LocalDateTime;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Teste {
     public static void main(String[] args){
-       cadastrarTeste();
-       GerenciadorRotas gr = GerenciadorRotas.getInstance();
-        LocalDateTime datahora1 = LocalDateTime.of(2020, 8, 10, 8, 0);
-        Duration d1 = Duration.ofMinutes(90);
-        VooVariasEscalas vve = new VooVariasEscalas(gr.listarTodos().get(0), gr.listarTodos(),datahora1, d1, Voo.Status.CONFIRMADO);
-        System.out.println(vve);
+        cadastrarTeste();
+        GerenciadorVoos grv = GerenciadorVoos.getInstance();
+        ArrayList<Voo> voos = grv.listarTodos();
+        System.out.println(voos.get(0));
+        System.out.println(voos.get(1));
+        System.out.println(voos.get(2));
+        System.out.println(voos.get(3));
     }
 
     public static void cadastrarTeste(){
@@ -52,10 +54,14 @@ public class Teste {
         Duration d2 = Duration.ofMinutes(90);
         Duration d3 = Duration.ofMinutes(530);
         Duration d4 = Duration.ofMinutes(530);
-        Voo v1 = new Voo(datahora1, d1, r1, Voo.Status.ATRASADO);
-        Voo v2 = new Voo(datahora2, d2, r2, Voo.Status.CONFIRMADO);
-        Voo v3 = new Voo(datahora3, d3, r3, Voo.Status.CANCELADO);
-        Voo v4 = new Voo(datahora4, d4, r4, Voo.Status.CONFIRMADO);
+        Voo v1 = new VooDireto(datahora1, r1);
+        Voo v2 = new VooDireto(datahora2, r2);
+        VooEscalas v3 = new VooEscalas(datahora3);
+        v3.adicionarRota(r3);
+        v3.adicionarRota(r4);
+        VooEscalas v4 = new VooEscalas(datahora4);
+        v4.adicionarRota(r4);
+        v4.adicionarRota(r3);
         GerenciadorVoos gv = GerenciadorVoos.getInstance();
         gv.adicionar(v1); gv.adicionar(v2); gv.adicionar(v3); gv.adicionar(v4);
     }
